@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db-sql>
+<mapper namespace="com.springboot.demo.usercenter.usermanager.serve.SysUserServiceImpl" version="1.0" >
+
+    <sql id="findListNativeSql">
+        SELECT
+        distinct
+        XX.module_id,
+        XX.action_code,
+        XX.action_name,
+        ZZ.name module_name,
+        ZZ.url,
+        ZZ.order_id,
+        ZZ.module_desc,
+        ZZ.code module_code,
+        ZZ.parent_id
+        FROM SYS_PRIVILEGE XX,
+        SYS_MODULE ZZ
+        WHERE XX.module_id =ZZ.id
+        AND ZZ.enable_state='10'
+        and exists
+        ( SELECT 1
+        FROM SYS_USER_AUTH AA,SYS_ROLE BB
+        WHERE AA.user_id =  ?1
+        AND AA.role_id = BB.id
+        AND BB.enable_state='10'
+        and AA.role_id = XX.role_id
+        AND EXISTS
+        ( SELECT 1
+        FROM sys_system SS
+        WHERE SS.id = BB.sys_id
+        AND SS.code =  ?2 )
+        AND AA.role_id=BB.id)
+    </sql>
+
+</mapper>
+</db-sql>

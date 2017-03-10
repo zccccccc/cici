@@ -1,0 +1,12 @@
+server:
+    port: 80
+spring:
+  datasource:
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@172.25.13.98:1521:data98
+      username: HHZY_TEST
+      password: HHZY_TEST
+
+logging.level.root: DEBUG
+logging.level.org.springframework.web: DEBUG
+logging.level.org.hibernate: DEBUG

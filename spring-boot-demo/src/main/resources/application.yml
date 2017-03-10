@@ -1,0 +1,17 @@
+#spring.profiles.active: dev 读取配置文件为 application-dev.yml 的配置文件,目前用于测试环境和生产环境配置分类
+#jpa.hibernate.ddl-auto:  会根据绑定的实体(@Entity)生成 ,建议使用 none
+#validate               加载hibernate时，验证创建数据库表结构
+#create                  每次加载hibernate，重新创建数据库表结构，这就是导致数据库表数据丢失的原因。
+#create-drop        加载hibernate时创建，退出是删除表结构
+#update                 加载hibernate自动更新数据库结构
+#jpa.hibernate.show-sql: true 显示sql
+spring:
+  profiles:
+    active: dev
+  jpa:
+     hibernate:
+       ddl-auto: none
+     show-sql: true
+
+
+

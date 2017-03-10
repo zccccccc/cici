@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db-sql>
+<mapper namespace="com.springboot.demo.usercenter.usermanager.serve.SysUserServiceImpl" version="1.0" >
+
+    <sql id="selectsql"  >
+
+        SELECT
+        d.id,
+        d.TRD_CMMD_ID,
+        d.PRODUCT_NAME,
+        t.REG_PRODUCT_NAME,
+        d.DISCOUNT_SUM,
+        d.FIRST_PRICE,
+        t.price,
+        d.DISCOUNT_PRICE,
+        (d.DISCOUNT_RATE*100)||'%' as  discount_Rate1,
+        d.DISCOUNT_STATE,
+        d.DISCOUNT_DATE,
+        t.last_price
+        FROM
+        TRD_TRADECOMMODITY_DISCOUNT d,
+        TRD_TRADECOMMODITY t
+        WHERE
+        d.TRD_CMMD_ID=t.project_product_id
+        and d.PROJECT_ID=t.PROJECT_ID
+        and d.APPLY_ID=?1
+
+    </sql>
+
+</mapper>
+</db-sql>
